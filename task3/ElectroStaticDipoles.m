@@ -52,21 +52,21 @@ for y_global_index = (N + 1) : (4 * N)
         block_number_y = (y_global_index - block_local_index_y) / N;
         delta_r = XYZ(1:3,block_local_index_y)-XYZ(1:3,block_local_index_x);
         if(block_local_index_y == x_global_index)
-            M(y_global_index, x_global_index) = 0;
+            C(y_global_index, x_global_index) = 0;
         else
             if(y_global_index == x_global_index)
-                M(y_global_index, x_global_index) = 1 / R(block_local_index_y) ^ 3;
+                C(y_global_index, x_global_index) = 1 / R(block_local_index_y) ^ 3;
             else
                 if(block_number_x == 0)
-                    M(y_global_index, x_global_index) = delta_r(block_number_y) / norm(delta_r) ^ 3;
+                    C(y_global_index, x_global_index) = delta_r(block_number_y) / norm(delta_r) ^ 3;
                 else
                     if(block_local_index_x == block_local_index_y)
-                        M(y_global_index, x_global_index) = 0;
+                        C(y_global_index, x_global_index) = 0;
                     else
                         if(block_number_y == block_number_x)
-                            M(y_global_index, x_global_index) = (3 * delta_r(block_number_y) ^ 2 - norm(delta_r)^2 ) / norm(delta_r) ^ 5;
+                            C(y_global_index, x_global_index) = (3 * delta_r(block_number_y) ^ 2 - norm(delta_r)^2 ) / norm(delta_r) ^ 5;
                         else
-                            M(y_global_index, x_global_index) = 3 * delta_r(block_number_y) * delta_r(block_number_x)/ norm(delta_r) ^ 5;
+                            C(y_global_index, x_global_index) = 3 * delta_r(block_number_y) * delta_r(block_number_x)/ norm(delta_r) ^ 5;
                         end
                     end
                 end
@@ -74,7 +74,7 @@ for y_global_index = (N + 1) : (4 * N)
         end 
     end
 end
-Final_vector = M \ F;
+Final_vector = C \ F;
 Q = Final_vector(1:N, 1);
 Dx = Final_vector(N+1:2*N,1)';
 Dy = Final_vector(2*N+1:3*N,1)';
