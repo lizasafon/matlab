@@ -35,7 +35,7 @@ for ii = 1 : Nxy(1)
     for jj = 1 : Nxy(2) %running through all points
         for qq = 1 : size(Q, 1) %running through all charges
             if norm([X(ii, jj); Y(ii, jj); 0] - xy(:, qq)) < R(qq)
-                F(ii, jj) = F(ii, jj) + Q(qq)/R(qq) + (norm(D(qq,:))*R(qq))/R(qq)^2; %if point is in ball
+                F(ii, jj) = F(ii, jj) + Q(qq)/R(qq) + (dot(D(qq,:),([X(ii, jj); Y(ii, jj); 0] - xy(:, qq))))/R(qq)^2; %if point is in ball
             else
                 F(ii, jj) = F(ii, jj) + Q(qq)/norm([X(ii, jj); Y(ii, jj); 0] - xy(:, qq)) + (dot(D(qq,:),([X(ii, jj); Y(ii, jj); 0] - xy(:, qq))))/norm(([X(ii, jj); Y(ii, jj); 0] - xy(:, qq)))^3;               
             end% phi = Q/r
