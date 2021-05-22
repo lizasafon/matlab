@@ -3,7 +3,7 @@ function [P, sgP] = NonLinApproximator (y,r,fun, P_0)
 N = size(y, 2);
 delta = 1e^-10;
 
-% p_number = find_arg_number(fun, N); % number of parameters P_i
+% p_length = find_arg_number(fun, N); % number of parameters P_i
 p_length = length(P_0);
 
 for iterations = 1 : 1000
