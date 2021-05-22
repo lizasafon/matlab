@@ -36,8 +36,6 @@ end
 
 end
 
-n = ii;
-end
 
 function [J] = jacobian(fun, r, p_length, P_0)
 step = 1e-6; 
