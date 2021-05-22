@@ -3,7 +3,6 @@ function [P, sgP] = NonLinApproximator (y,r,fun, P_0)
 N = size(y, 2);
 delta = 1e^-10;
 
-% p_length = find_arg_number(fun, N); % number of parameters P_i
 p_length = length(P_0);
 
 for iterations = 1 : 1000
@@ -35,18 +34,6 @@ P_last = P;
 P_0 = P';
 end
 
-end
-
-function [n] = find_arg_number(fun, N)
-ii = 1;
-except = 'error';
-while strmatch(except, 'error')
-    except = ' ';
-    try fun(zeros(1, N), zeros(1, ii))
-    catch E
-        except = E.identifier;
-        ii = ii + 1;
-    end
 end
 
 n = ii;
