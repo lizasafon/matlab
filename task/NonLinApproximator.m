@@ -1,5 +1,5 @@
 function [P, sgP] = NonLinApproximator (y,r,fun, P_0)
-% P_0 is a line-array with starting guess for values of parameters
+% P_0 - first linear approximation
 N = size(y, 2);
 delta = 1e^-10;
 
