@@ -39,8 +39,8 @@ end
 
 function [n] = find_arg_number(fun, N)
 ii = 1;
-except = 'MATLAB:badsubscript';
-while strmatch(except, 'MATLAB:badsubscript')
+except = 'error';
+while strmatch(except, 'error')
     except = ' ';
     try fun(zeros(1, N), zeros(1, ii))
     catch E
@@ -53,8 +53,7 @@ n = ii;
 end
 
 function [J] = jacobian(fun, r, p_length, P_0)
-% numerical method of finding derivative
-step = 1e-6; %step along axis
+step = 1e-6; 
 N = length(r(1, :));
 
 J = zeros(N, p_length);
